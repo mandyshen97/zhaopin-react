@@ -1,27 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import {Button} from 'antd-mobile'
+import {HashRouter, Switch, Route} from 'react-router-dom'
+import Login from './containers/login/Login';
+import Register from './containers/register/Register';
+import MainPage from './containers/main/Main';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-      <Button type='primary'>按钮</Button>
-    </div>
+    <HashRouter>
+      <Switch>
+        <Route path='/login' component={Login}></Route>
+        <Route path='/register' component={Register}></Route>
+        {/* <Route path='/main' component={MainPage}></Route> */}
+        {/* <Route path='/' component={Login}></Route> */}
+        <Route component={MainPage}></Route>
+      </Switch>
+    </HashRouter>
   );
 }
 
