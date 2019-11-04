@@ -2,6 +2,7 @@
  * 用户登录的路由组件
  */
 import React, { Component } from 'react';
+import Logo from './../../components/logo/Logo';
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -9,7 +10,9 @@ class Login extends Component {
   }
   render() { 
     return (  
-      <div>login</div>
+      <div>
+        <Logo></Logo>
+      </div>
     );
   }
 }
