@@ -203,6 +203,17 @@ module.exports = function (webpackEnv) {
       // module chunks which are built will work in web workers as well.
       globalObject: 'this',
     },
+    devServer: {
+      port: 3000,
+      progress: true,
+      contentBase: './build',
+      proxy: { // => 以'/'开始的请求，就把请求路径转到 target
+        '/': {
+          target: 'http://localhost:4000',
+          changeOrigin: true // => 允许跨域
+        }
+      }
+    },
     optimization: {
       minimize: isEnvProduction,
       minimizer: [

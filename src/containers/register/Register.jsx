@@ -1,33 +1,46 @@
 /**
  * 用户注册的路由组件
  */
-import React, { Component } from 'react';
-import Logo from './../../components/logo/Logo';
-import { NavBar, WingBlank, List, InputItem, WhiteSpace, Radio, Button } from 'antd-mobile';
+import React, { Component } from "react";
+import Logo from "./../../components/logo/Logo";
+import {
+  NavBar,
+  WingBlank,
+  List,
+  InputItem,
+  WhiteSpace,
+  Radio,
+  Button
+} from "antd-mobile";
+
+import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
+import { register } from "../../redux/actions";
 class Register extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
-      password: '',
-      passwordConfirm: '',
-      type: 'boss'
-    }
+      username: "",
+      password: "",
+      passwordConfirm: "",
+      type: "boss"
+    };
   }
   handleChange = (name, value) => {
-    console.log(999)
     this.setState({
       [name]: value
-    })
-  }
-  register=()=>{
-    console.log(JSON.stringify(this.state))
+    });
+  };
+  register = () => {
+    debugger
+    console.log(JSON.stringify(this.state));
+    console.log(this.props)
     // todo
-  }
+  };
   // 跳转到Login路由
-  toLogin=()=>{
-    this.props.history.replace('/login')
-  }
+  toLogin = () => {
+    this.props.history.replace("/login");
+  };
   render() {
     return (
       <div>
@@ -35,33 +48,52 @@ class Register extends Component {
         <Logo></Logo>
         <WingBlank>
           <List>
-            <InputItem placeholder='请输入用户名'
-              onChange={val => this.handleChange('username', val)}
-            >用户名：</InputItem>
+            <InputItem
+              placeholder="请输入用户名"
+              onChange={val => this.handleChange("username", val)}
+            >
+              用户名：
+            </InputItem>
             <WhiteSpace />
-            <InputItem type='password'
-              placeholder='请输入密码'
-              onChange={val => this.handleChange('password', val)}
-            >密&nbsp;&nbsp;&nbsp;码：</InputItem>
+            <InputItem
+              type="password"
+              placeholder="请输入密码"
+              onChange={val => this.handleChange("password", val)}
+            >
+              密&nbsp;&nbsp;&nbsp;码：
+            </InputItem>
             <WhiteSpace />
-            <InputItem type='password'
-              placeholder='请再次输入密码确认'
-              onChange={val => this.handleChange('passwordConfirm', val)}
-            >确认密码：</InputItem>
+            <InputItem
+              type="password"
+              placeholder="请再次输入密码确认"
+              onChange={val => this.handleChange("passwordConfirm", val)}
+            >
+              确认密码：
+            </InputItem>
             <List.Item>
-              <span style={{ marginRight: '30px' }}>用户类型：</span>
-              <Radio checked={this.state.type==='job-seeker'}
-                onChange={() => this.handleChange('type', 'job-seeker')}
-              >大&nbsp;牛</Radio>
+              <span style={{ marginRight: "30px" }}>用户类型：</span>
+              <Radio
+                checked={this.state.type === "job-seeker"}
+                onChange={() => this.handleChange("type", "job-seeker")}
+              >
+                大&nbsp;牛
+              </Radio>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <Radio checked={this.state.type==='boss'}
-                onChange={() => this.handleChange('type', 'boss')}
-              >老&nbsp;板</Radio>
+              <Radio
+                checked={this.state.type === "boss"}
+                onChange={() => this.handleChange("type", "boss")}
+              >
+                老&nbsp;板
+              </Radio>
             </List.Item>
             <WhiteSpace />
-            <Button type='primary' onClick={this.register}>注&nbsp;&nbsp;&nbsp;册</Button>
+            <Button type="primary" onClick={this.register}>
+              注&nbsp;&nbsp;&nbsp;册
+            </Button>
             <WhiteSpace />
-            <Button type='primary' onClick={this.toLogin}>已有帐号 去登录</Button>
+            <Button type="primary" onClick={this.toLogin}>
+              已有帐号 去登录
+            </Button>
           </List>
         </WingBlank>
       </div>
@@ -69,4 +101,4 @@ class Register extends Component {
   }
 }
 
-export default Register;
+export default connect(state => state.user, { register })(Register);

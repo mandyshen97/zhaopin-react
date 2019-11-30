@@ -28,7 +28,7 @@ class Login extends Component {
   render() {
     return (
       <div>
-        <NavBar>zhapin</NavBar>
+        <NavBar>zhaopin</NavBar>
         <Logo></Logo>
         <WingBlank>
           <List>
